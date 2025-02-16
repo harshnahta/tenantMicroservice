@@ -1,0 +1,128 @@
+{
+  "info": {
+    "_postman_id": "8c01120c-b314-4dcc-b658-ee175749c460",
+    "name": "multiTenant",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "6443254",
+    "_collection_link": "https://lively-zodiac-18555.postman.co/workspace/365Ads~92c45542-6b11-4cbc-b98f-d6cbd21b3d4d/collection/6443254-8c01120c-b314-4dcc-b658-ee175749c460?action=share&source=collection_link&creator=6443254"
+  },
+  "item": [
+    {
+      "name": "AuthService",
+      "item": [
+        {
+          "name": "signup",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"firstname\": \"Harsh\",\n    \"lastname\": \"jain\",\n    \"email\": \"harsh2@gmail.com\",\n    \"password\": \"123456\",\n    \"rememberme\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3002/v1/api/auth/register",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["v1", "api", "auth", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"harsh2@gmail.com\",\n    \"password\": \"123456\",\n    \"rememberme\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3002/v1/api/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["v1", "api", "auth", "login"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ProductService",
+      "item": [
+        {
+          "name": "get-product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnRJZCI6ImNtNzdtbjRxMDAwMDFyeXpycWF2Z3V4bmQiLCJ1c2VySWQiOiJjbTc3bW40cHowMDAwcnl6cmc2czJwaHkwIiwicmVtZW1iZXJtZSI6ZmFsc2UsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzM5NzEwNDE1LCJleHAiOjE3NDAzMTUyMTV9.y9r1rvyTth_4wr5yGhY9iyB4EDTSYX-QaUNJAxe2rcM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3003/v1/api/product/list",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["v1", "api", "product", "list"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add-product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnRJZCI6ImNtNzdtbjRxMDAwMDFyeXpycWF2Z3V4bmQiLCJ1c2VySWQiOiJjbTc3bW40cHowMDAwcnl6cmc2czJwaHkwIiwicmVtZW1iZXJtZSI6ZmFsc2UsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzM5NzEwNDE1LCJleHAiOjE3NDAzMTUyMTV9.y9r1rvyTth_4wr5yGhY9iyB4EDTSYX-QaUNJAxe2rcM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\":\"asd\",\n    \"description\":\"22\",\n    \"price\":1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3003/v1/api/product/add",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3003",
+              "path": ["v1", "api", "product", "add"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
