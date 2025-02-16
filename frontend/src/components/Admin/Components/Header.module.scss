@@ -1,0 +1,251 @@
+@import '../../../app/styles/variables.scss';
+@import '../../../app/styles/mixins.scss';
+
+.header {
+  background: $white;
+  padding: $space20 $space36;
+  flex-wrap: wrap;
+  // position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 11;
+  // box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #f0f0f0;
+
+  .logo {
+    display: $block;
+    padding-left: 44px;
+    img {
+      width: 100px;
+      height: auto;
+    }
+  }
+}
+
+.hdrMenu {
+  display: flex;
+  position: absolute;
+  right: 80px;
+  top: 10px;
+}
+
+.navigationLink {
+  > a {
+    text-transform: $text-uppercase;
+    letter-spacing: 0px;
+    margin: 0 $space20 !important;
+    padding: 0 !important;
+    height: 80px;
+    line-height: 80px;
+    position: $relative;
+
+    &.active {
+      color: $blue !important;
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &::after {
+      position: $absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 0;
+      height: 3px;
+      background: $blue;
+      content: '';
+      transition: $theme-transition;
+
+      @media (max-width: $md) {
+        height: 1px;
+      }
+    }
+
+    &:hover {
+      color: $blue !important;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: $xxxxl) {
+      margin: 0 $space20 !important;
+    }
+    @media (max-width: $xxxl) {
+      margin: 0 $space10 !important;
+      font-size: $fs15 - 1;
+    }
+    @media (max-width: $xxl) {
+      font-size: $fs15 - 2;
+      margin: 0 $space10 - 2 !important;
+    }
+    @media (max-width: $xl) {
+      height: auto;
+      line-height: normal;
+      padding: $space10 + 5 $space20 !important;
+      display: $block;
+      margin: 0 !important;
+    }
+  }
+}
+
+.langDropdown {
+  button {
+    color: $blue;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0 $space30 + 5 0 $space30;
+    border-radius: 0;
+    border-right: 1px solid #d0d3d9;
+    font-size: $fs15;
+    position: relative;
+
+    &:focus,
+    &:hover {
+      background: transparent;
+      box-shadow: none;
+      color: $blue;
+    }
+
+    @media (max-width: $xxxxl) {
+      padding: 0 $space30 + 5 0 $space20;
+    }
+    @media (max-width: $xxxl) {
+      font-size: $fs15 - 1;
+      padding: 0 $space30 + 5 0 $space10;
+    }
+    @media (max-width: $xxl) {
+      font-size: $fs15 - 2;
+      padding: 0 $space30 0 $space10 - 2;
+    }
+  }
+  @media (max-width: $md) {
+    position: absolute;
+    right: 60px;
+    top: 17px;
+  }
+}
+
+.hdrRight {
+  @include d-flex4;
+
+  @media (max-width: $xl) {
+    margin-right: $space20 * 2 + 10;
+  }
+}
+
+.hamburger {
+  position: absolute;
+  top: 17px;
+  left: 24px;
+  cursor: pointer;
+}
+
+.userProfile {
+  padding-left: $space20 + 2;
+  @include d-flex4;
+
+  .welcomeText {
+    max-width: 175px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: $baseColor;
+  }
+
+  @media (max-width: $xxl) {
+    padding-left: $space10 + 5;
+  }
+
+  .welcomeText {
+    @media (max-width: $xxl) {
+      font-size: $fs15 - 2;
+    }
+    strong {
+      color: $blue;
+      font-size: $fs20 + 2;
+      font-weight: $font-weight-bold;
+
+      @media (max-width: $xxxl) {
+        font-size: $fs20 - 2;
+      }
+      @media (max-width: $xxl) {
+        font-size: $fs15 + 1;
+      }
+      @media (max-width: $md) {
+        display: none;
+      }
+    }
+  }
+
+  button {
+    padding: 0;
+    padding-right: $space30 - 5;
+
+    @media (max-width: $xxl) {
+      padding-right: $space20;
+    }
+  }
+}
+
+.userImg {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: $white;
+  overflow: hidden;
+  display: $inlineBlock;
+  margin-left: $space20 - 10;
+  position: relative;
+
+  img {
+    width: 100%;
+    display: $block;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+  }
+}
+
+.navUserProfile {
+  display: none;
+
+  @media (max-width: $md) {
+    display: $flex;
+    padding-top: $space10;
+  }
+}
+
+.deskUserProfile {
+  @media (max-width: $md) {
+    display: none;
+  }
+  .notificationBell {
+    font-size: $fs24 + 1;
+    margin-top: 8px;
+    position: relative;
+    .notificationBadge {
+      position: absolute;
+      font-size: $fs14 - 2;
+      border-radius: 20px;
+      line-height: 10px;
+      background-color: transparent !important;
+      color: red;
+      left: 6px;
+      top: -6px;
+    }
+    i {
+      color: #3299cc !important;
+    }
+  }
+}
+
+.notificationList > div {
+  margin: 2px !important;
+  border: none !important;
+  background: #eaf0f6;
+}

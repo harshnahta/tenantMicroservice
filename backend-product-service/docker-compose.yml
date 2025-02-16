@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis-container-product
+    restart: always
+    ports:
+      - '6380:6379' # Change the host port to 6380 to avoid conflicts
+    networks:
+      - app-network
+
+  product-service:
+    build: .
+    container_name: product-service
+    restart: always
+    depends_on:
+      - redis
+    environment:
+      REDIS_HOST: redis # Use the service name 'redis' instead of '127.0.0.1'
+      REDIS_PORT: 6379 # Container's Redis port remains the same
+    ports:
+      - '3003:3003'
+    command: npm run start:prod
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge

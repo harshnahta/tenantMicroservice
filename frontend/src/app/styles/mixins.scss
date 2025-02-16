@@ -1,0 +1,91 @@
+@import './variables.scss';
+
+@mixin html {
+  scroll-behavior: smooth;
+}
+@mixin body {
+  background-color: $offgray;
+  min-height: 100vh;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  outline: 0;
+  overflow-y: overlay;
+}
+
+@mixin d-flex1 {
+  display: $flex;
+  align-items: $alignCenter;
+  justify-content: $justifyCenter;
+}
+
+@mixin d-flex2 {
+  display: $flex;
+  align-items: $alignCenter;
+  justify-content: $justifyBetween;
+}
+
+@mixin d-flex3 {
+  display: $flex;
+  flex-direction: $column;
+  justify-content: $justifyBetween;
+}
+
+@mixin d-flex4 {
+  display: $flex;
+  align-items: $alignCenter;
+}
+
+@mixin button {
+  height: 44px;
+  line-height: 44px;
+  border-radius: $border-radius-sm;
+  color: #fff;
+  font-size: 16px;
+  background: $primary;
+  border-color: $primary;
+  padding: 0 $space20;
+  text-align: center;
+  box-shadow: none;
+  display: $inlineBlock;
+
+  &:not(:disabled):not(.disabled):active {
+    background: $primary;
+    border-color: $primary;
+    box-shadow: $none !important;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $primary;
+    border-color: $primary;
+    color: $white;
+  }
+}
+
+@mixin formControl {
+  border: 1px solid $lightGrey;
+  border-radius: 0;
+  height: 44px;
+  line-height: 44px;
+  font-size: $fs15 - 1;
+  font-weight: $font-weight-light;
+  color: $grey;
+  padding: 0 $space10 + 5;
+}
+
+@mixin formSelect {
+  border: 1px solid $lightGrey;
+  border-radius: 0;
+  height: 44px;
+  line-height: 44px;
+  font-size: $fs15 - 1;
+  font-weight: $font-weight-light;
+  color: $lightGrey;
+  padding: 0 $space30 0 $space10 + 5;
+  background: #fff url(/assets/images/down-arrow.svg) no-repeat center right 15px;
+}

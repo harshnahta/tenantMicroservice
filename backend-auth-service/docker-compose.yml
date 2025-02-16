@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis-container
+    restart: always
+    ports:
+      - '6379:6379'
+    networks:
+      - app-network
+
+  auth-service:
+    build: .
+    container_name: auth-service
+    restart: always
+    depends_on:
+      - redis
+    environment:
+      REDIS_HOST: redis # Use 'redis' instead of '127.0.0.1'
+      REDIS_PORT: 6379
+    ports:
+      - '3002:3002'
+    command: npm run start:prod
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

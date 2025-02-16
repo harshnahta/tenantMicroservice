@@ -1,0 +1,62 @@
+version: '3.8'
+
+networks:
+  app-network:
+    external: true # Ensure the network exists or create manually before running
+
+services:
+  auth-service:
+    build: ./backend-auth-service
+    container_name: auth-service
+    restart: always
+    depends_on:
+      - redis
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    ports:
+      - '3002:3002'
+    command: npm run start:prod
+    networks:
+      - app-network
+
+  product-service:
+    build: ./backend-product-service
+    container_name: product-service
+    restart: always
+    depends_on:
+      - redis
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    ports:
+      - '3003:3003'
+    command: npm run start:prod
+    networks:
+      - app-network
+
+  frontend-service:
+    build: ./frontend
+    container_name: frontend-service
+    restart: always
+    depends_on:
+      - auth-service
+      - product-service
+    environment:
+      - API_ENDPOINT=http://auth-service:3002/v1/api
+      - PRODUCT_API_ENDPOINT=http://product-service:3003/v1/api
+      - HOST_URL=http://localhost:3000
+    ports:
+      - '3000:3000'
+    command: npm run start
+    networks:
+      - app-network
+
+  redis:
+    image: redis:latest
+    container_name: redis-container
+    restart: always
+    ports:
+      - '6379:6379'
+    networks:
+      - app-network

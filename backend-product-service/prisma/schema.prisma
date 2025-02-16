@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+  binaryTargets   = ["native", "debian-openssl-3.0.x"]
+}
+
+generator nestgraphql {
+  provider                   = "node node_modules/prisma-nestjs-graphql"
+  output                     = "../src/common/@generated"
+  types_DateTime_fieldType   = "Date | string"
+  types_DateTime_graphqlType = "Date"
+  fields_Validator_from      = "class-validator"
+  fields_Validator_input     = true
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // schemas  = ["public"]
+}
+
+// All Users
+model Users {
+  id        String    @id @default(cuid())
+  // For now creating it as auto generated, in future It can be a separate table for managing tenant separately 
+  tenantId  String    @default(cuid())
+  firstname String?
+  lastname  String?
+  email     String    @unique
+  password  String
+  role      Role      @default(USER)
+  lastLogin DateTime?
+  auth      Json?
+  status    Boolean?  @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // @@schema("public")
+}
+
+enum Role {
+  USER
+
+  // @@schema("public")
+}
+
+model Lockout {
+  id             String   @id @default(cuid())
+  userIP         String
+  lockoutTimeout DateTime
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // @@schema("public")
+}
+
+model Products {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  description String
+  price       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // @@schema("public")
+}

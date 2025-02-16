@@ -1,0 +1,18 @@
+services:
+  frontend-service:
+    build: .
+    container_name: frontend-service
+    restart: always
+    ports:
+      - '3000:3000'
+    environment:
+      - API_ENDPOINT=http://auth-service:3002/v1/api
+      - PRODUCT_API_ENDPOINT=http://product-service:3003/v1/api
+      - HOST_URL=http://localhost:3000
+    command: npm run start
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true

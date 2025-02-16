@@ -1,0 +1,43 @@
+# Node.js dependencies
+node_modules/
+*.log
+npm-debug.log*
+yarn-error.log
+pnpm-debug.log
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build & Output Directories
+dist/
+.build/
+.out/
+.cache/
+coverage/
+.DS_Store
+
+# IDE & Editor Configs
+.vscode/
+.idea/
+*.iml
+
+# Docker
+docker-compose.override.yml
+
+
+# Auth Backend Ignore (Merge from auth-backend/.gitignore)
+backend-auth-service/node_modules/
+backend-auth-service/dist/
+backend-auth-service/.cache/
+
+# Product Backend Ignore (Merge from product-backend/.gitignore)
+backend-product-service/node_modules/
+backend-product-service/dist/
+backend-product-service/.cache/
+
+# Frontend Ignore (Merge from frontend/.gitignore)
+frontend/node_modules/
+frontend/dist/
+frontend/.next/
+frontend/.nuxt/
+frontend/.cache/

@@ -1,0 +1,57 @@
+# Generals
+isProduction=true
+NODE_ENV=development
+SERVER_PORT=3002
+CLIENT_PORT=3200
+SERVER_URL=http://localhost:${SERVER_PORT}/
+CLIENT_URL=http://localhost:${CLIENT_PORT}/
+
+#-------------------------------------------------
+# Database
+
+#local
+DB_CONNECTOR=postgres
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASSWORD=1234
+DB_DATABASE=dbname
+
+
+DB_PORT=5432
+DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}?schema=public
+
+#--------------------------------------------------
+# Pgadmin
+PGADMIN_DEFAULT_EMAIL=admin@admin.com
+PGADMIN_DEFAULT_PASSWORD=admin
+
+
+
+#---------------------------------------------------
+# Jwt options
+JWT_PRIVATE_KEY=justanotherprivatekey
+JWT_PUBLIC_KEY=notimportant
+JWT_ALGORITHM=HS256
+# 2h
+JWT_EXPIRE_TIME=7200
+# 30 day
+JWT_EXPIRE_REFRESH_TIME=2592000
+JWT_SIGNATURE=secret123456789
+
+# Graphql options
+GRAPHQL_PLAYGROUND=true
+
+# Redis
+REDIS_PORT=6379
+REDIS_HOST=localhost
+
+# Session
+SESSION_SECRET=somesecretverystrong
+
+# System user
+ADMIN_USER_FIRSTNAME=admin
+ADMIN_USER_LASTNAME=System
+ADMIN_USER_EMAIL=info+admin@365ads.com
+ADMIN_USER_PASSWORD='q4rv87263r%Eb8qyub$#$'
+
+
